@@ -10,7 +10,6 @@ text_to_speech = TextToSpeechV1(
 
 # print(json.dumps(text_to_speech.voices(), indent=2))
 
-# with open(join('C:/Users/rober/PycharmProjects/python-sdk', '/resources/output.wav'),
 with open(join(dirname(__file__), '../resources/output.wav'),
           'wb') as audio_file:
     audio_file.write(

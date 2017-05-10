@@ -1,26 +1,21 @@
-#
-# from os.path import dirname, join
-# import os
-#
-# wav = os.system('start ' + join(dirname(__file__), '../resources/speech.wav'))
-
 # -*- coding: utf-8 -*-
 '''recorder.py
 Provides WAV recording functionality via two approaches:
+
 Blocking mode (record for a set duration):
 >>> rec = Recorder(channels=2)
->>> with rec.open(join(dirname(__file__), '../resources/output.wav'), 'wb') as recfile:
+>>> with rec.open('blocking.wav', 'wb') as recfile:
 ...     recfile.record(duration=5.0)
+
 Non-blocking mode (start and stop recording):
 >>> rec = Recorder(channels=2)
->>> with rec.open(join(dirname(__file__), '../resources/output.wav'), 'wb') as recfile2:
+>>> with rec.open('nonblocking.wav', 'wb') as recfile2:
 ...     recfile2.start_recording()
 ...     time.sleep(5.0)
 ...     recfile2.stop_recording()
 '''
 import pyaudio
 import wave
-from os.path import join, dirname
 
 class Recorder(object):
     '''A recorder class for recording audio to a WAV file.
@@ -99,11 +94,3 @@ class RecordingFile(object):
         wavefile.setsampwidth(self._pa.get_sample_size(pyaudio.paInt16))
         wavefile.setframerate(self.rate)
         return wavefile
-
-#  fname, mode, channels, rate, frames_per_buffer
-fname = join(dirname(__file__), '../resources/output.wav')
-recnow = RecordingFile(fname, 'wb', 1, 44100, 1024)
-
-recnow.start_recording()
-
-print(recnow)

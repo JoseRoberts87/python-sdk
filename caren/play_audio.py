@@ -1,4 +1,5 @@
 from os.path import join, dirname
 import os
 
-os.system(join(dirname(__file__), '../resources/output.wav'))
+def playAudio():
+    os.system(join(dirname(__file__), '../resources/speech.wav'))
